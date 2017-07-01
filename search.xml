@@ -3,6 +3,78 @@
   
     
     <entry>
+      <title><![CDATA[git]]></title>
+      <url>/2017/07/01/git/</url>
+      <content type="html"><![CDATA[<h1 id="201704—-homework"><a href="#201704—-homework" class="headerlink" title="201704—_homework"></a>201704—_homework</h1><h2 id="git下载地址"><a href="#git下载地址" class="headerlink" title="git下载地址"></a>git下载地址</h2><p><a href="https://git-scm.com/" target="_blank" rel="external">https://git-scm.com/</a></p>
+<p>windows下使用linux命令</p>
+<h2 id="mac下"><a href="#mac下" class="headerlink" title="mac下"></a>mac下</h2><ul>
+<li>增强mac下的命令窗口 oh-my-zsh item2</li>
+</ul>
+<h2 id="cd-changeDirectory"><a href="#cd-changeDirectory" class="headerlink" title="cd changeDirectory"></a>cd changeDirectory</h2><h2 id="告诉git你是谁"><a href="#告诉git你是谁" class="headerlink" title="告诉git你是谁"></a>告诉git你是谁</h2><p>git config –list 查看git配置列表（查看当前有没有配置过）<br>git config –global user.name github账号名<br>git config –global user.email github邮箱</p>
+<h2 id="删除文件夹"><a href="#删除文件夹" class="headerlink" title="删除文件夹"></a>删除文件夹</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rm -rf .git  (慎重使用)</div></pre></td></tr></table></figure>
+<h2 id="要管理文件"><a href="#要管理文件" class="headerlink" title="要管理文件"></a>要管理文件</h2><ul>
+<li>初始化git，告诉git哪个文件夹归你管理<br>git init</li>
+</ul>
+<p>-&gt; git仓库 不能嵌套</p>
+<p>ls(查看.git) ls -a 查看隐藏的</p>
+<h2 id="touch-创建文件"><a href="#touch-创建文件" class="headerlink" title="touch 创建文件"></a>touch 创建文件</h2><p>可以创建以 .开头的文件</p>
+<h2 id="cat-查看文件"><a href="#cat-查看文件" class="headerlink" title="cat 查看文件"></a>cat 查看文件</h2><h2 id="vi-文件名-打开文件"><a href="#vi-文件名-打开文件" class="headerlink" title="vi +文件名 打开文件"></a>vi +文件名 打开文件</h2><ul>
+<li>i 插入   a 插入</li>
+<li>ESC+:wq! 保存退出</li>
+</ul>
+<h2 id="增加暂存区"><a href="#增加暂存区" class="headerlink" title="增加暂存区"></a>增加暂存区</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git add .</div></pre></td></tr></table></figure>
+<blockquote>
+<p>在工作区中的文件是红色的，添加到暂存区是绿色的</p>
+</blockquote>
+<h2 id="添加到历史区"><a href="#添加到历史区" class="headerlink" title="添加到历史区"></a>添加到历史区</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git commit -m&apos;xxx&apos;</div></pre></td></tr></table></figure>
+<p>##查看状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git status</div></pre></td></tr></table></figure></p>
+<h2 id="查看历史状态（查看提交日志）"><a href="#查看历史状态（查看提交日志）" class="headerlink" title="查看历史状态（查看提交日志）"></a>查看历史状态（查看提交日志）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git log</div></pre></td></tr></table></figure>
+<h2 id="工作区和暂存区比较"><a href="#工作区和暂存区比较" class="headerlink" title="工作区和暂存区比较"></a>工作区和暂存区比较</h2><p>git diff</p>
+<h2 id="暂存区和历史区"><a href="#暂存区和历史区" class="headerlink" title="暂存区和历史区"></a>暂存区和历史区</h2><p>git diff –cached</p>
+<h2 id="工作区和版本库"><a href="#工作区和版本库" class="headerlink" title="工作区和版本库"></a>工作区和版本库</h2><p>git diff master</p>
+<h2 id="移除本次的add"><a href="#移除本次的add" class="headerlink" title="移除本次的add"></a>移除本次的add</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git reset HEAD 文件名</div></pre></td></tr></table></figure>
+<h2 id="从暂存区覆盖掉工作区"><a href="#从暂存区覆盖掉工作区" class="headerlink" title="从暂存区覆盖掉工作区"></a>从暂存区覆盖掉工作区</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout 文件名</div></pre></td></tr></table></figure>
+<h2 id="回滚，将工作区-暂存区-历史区用同一版本全部覆盖掉"><a href="#回滚，将工作区-暂存区-历史区用同一版本全部覆盖掉" class="headerlink" title="回滚，将工作区 暂存区 历史区用同一版本全部覆盖掉"></a>回滚，将工作区 暂存区 历史区用同一版本全部覆盖掉</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git reset --hard 版本号</div></pre></td></tr></table></figure>
+<blockquote>
+<p>想查看未来需要用<br>git reflog  然后再用git reset –hard 版本号跳转版本</p>
+</blockquote>
+<h2 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">查看分支</div><div class="line">git branch</div></pre></td></tr></table></figure>
+<p>创建分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch dev  (dev就是分支名字)</div></pre></td></tr></table></figure></p>
+<p>切换分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout dev</div></pre></td></tr></table></figure></p>
+<p>删除分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch -D dev</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>创建并切换分支 git checkout -b dev</p>
+<p>只有将内容提交到某个分支上，这个内容才能归属于那个分支，别的分支就看不到这个内容了</p>
+</blockquote>
+<p>合并分支<br>在master上合并dev<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">合并分支 git merge dev</div></pre></td></tr></table></figure></p>
+<h2 id="提交到远程仓库"><a href="#提交到远程仓库" class="headerlink" title="提交到远程仓库"></a>提交到远程仓库</h2><ul>
+<li>git init</li>
+<li>touch .gitignore 写上忽略内容</li>
+<li>创建需要提交的文件(空文件夹不会被提交)</li>
+<li>添加到暂存区</li>
+<li>添加到历史区</li>
+</ul>
+<blockquote>
+<p>保证github是可用状态</p>
+</blockquote>
+<h2 id="连接远程仓库"><a href="#连接远程仓库" class="headerlink" title="连接远程仓库"></a>连接远程仓库</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git remote add 别名(origin) 地址</div><div class="line">git remote -v 查看关联的仓库</div><div class="line">git remote rm 别名               可以删除链接</div></pre></td></tr></table></figure>
+<h2 id="推送"><a href="#推送" class="headerlink" title="推送"></a>推送</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin master</div></pre></td></tr></table></figure>
+<h2 id="发布github静态页"><a href="#发布github静态页" class="headerlink" title="发布github静态页"></a>发布github静态页</h2><ul>
+<li>必须要有一个固定的分支 (gh-pages)</li>
+<li>需要将内容发送到这个分支上</li>
+<li>在setting中可以免费送你一个网址<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git checkout -b gh-pages</div><div class="line">touch index.html</div><div class="line">git add .</div><div class="line">git commit -m&apos;addHtml&apos;</div><div class="line">git push origin gh-pages</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="克隆"><a href="#克隆" class="headerlink" title="克隆"></a>克隆</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git clone 别人的地址 别名</div><div class="line">git pull origin master 即可 (冲突文件提交（历史区）后再次拉取)</div></pre></td></tr></table></figure>
+<h2 id="pull-request"><a href="#pull-request" class="headerlink" title="pull request"></a>pull request</h2><ul>
+<li>可以发送合并请求（必须是fork过来的 ，才可以发送合并请求）</li>
+</ul>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[call apply bind JSON]]></title>
       <url>/2017/05/02/call-apply-bind-JSON/</url>
       <content type="html"><![CDATA[<h3 id="原型深入"><a href="#原型深入" class="headerlink" title="原型深入"></a>原型深入</h3><p>getElementsByName的上下文必须是document</p>
