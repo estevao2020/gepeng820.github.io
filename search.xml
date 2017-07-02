@@ -3,6 +3,131 @@
   
     
     <entry>
+      <title><![CDATA[node特点以及模块还有npm与yarn]]></title>
+      <url>/2017/07/02/node%E7%89%B9%E7%82%B9%E4%BB%A5%E5%8F%8A%E6%A8%A1%E5%9D%97%E6%A8%A1%E5%9D%97%E5%BC%95%E7%94%A8%E8%BF%98%E6%9C%89npm%E4%B8%8Eyarn/</url>
+      <content type="html"><![CDATA[<h2 id="如何解决函数中的异步问题"><a href="#如何解决函数中的异步问题" class="headerlink" title="如何解决函数中的异步问题"></a>如何解决函数中的异步问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">let read=(cb)=&gt;&#123;</div><div class="line">    setTimeout(()=&gt;&#123;</div><div class="line">         str=&apos;wohenshuai&apos;;</div><div class="line">         cb(str)</div><div class="line">    &#125;,2000)</div><div class="line">&#125;;</div><div class="line"></div><div class="line">//获取到wohenshuai</div><div class="line">read(function (data) &#123;</div><div class="line">    console.log(data);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="node-怎么解决异步问题？"><a href="#node-怎么解决异步问题？" class="headerlink" title="node 怎么解决异步问题？"></a>node 怎么解决异步问题？</h2><ul>
+<li>callback<h2 id="node不具有兼容性问题"><a href="#node不具有兼容性问题" class="headerlink" title="node不具有兼容性问题"></a>node不具有兼容性问题</h2></li>
+</ul>
+<h2 id="在node中-能用异步绝不用同步"><a href="#在node中-能用异步绝不用同步" class="headerlink" title="在node中 能用异步绝不用同步"></a>在node中 能用异步绝不用同步</h2><ul>
+<li>要解决异步问题 就是回调函数，将后续的逻辑当作参数传递给这个函数</li>
+<li>异步永远在同步之后执行，如果同步代码执行不能完成，异步永远不会触发</li>
+<li>浏览器刷新频率18~20毫秒，防止dom渲染设置settimeout20毫秒</li>
+<li>非阻塞(厨师)是异步的前置条件</li>
+</ul>
+<h2 id="什么是io？"><a href="#什么是io？" class="headerlink" title="什么是io？"></a>什么是io？</h2><ul>
+<li>input(输入)从文件系统中读取文件</li>
+<li>Output(输出)想文件系统中写入文件</li>
+</ul>
+<h2 id="单线程-多线程-gt-node是基于js的"><a href="#单线程-多线程-gt-node是基于js的" class="headerlink" title="单线程 多线程-&gt;node是基于js的"></a>单线程 多线程-&gt;node是基于js的</h2><ul>
+<li>java 多线程 同步</li>
+<li>node 单线程 异步  </li>
+<li>js中的多线程h5 链接：<a href="http://blog.sina.com.cn/s/blog_63940ce201018lyh.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_63940ce201018lyh.html</a></li>
+<li><p>如果想开多线程 要开子线程</p>
+</li>
+<li><p>什么是多线程（感觉像同一时间干了很多事，快速切换上下文） 单线程</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"> function a(b) &#123;</div><div class="line">     return b;</div><div class="line"> &#125;</div><div class="line"> </div><div class="line">1 箭头函数不需要funtion 声明</div><div class="line">2 如果箭头后面是一个&#123;&#125; 需要些return</div><div class="line">3 this 指向 箭头函数中没有this指向，所以this指向上一级，从而解决了this问题.</div><div class="line"></div><div class="line"></div><div class="line"> let a=(b,c)=&gt;b+c;</div><div class="line"></div><div class="line"> function a(b) &#123;</div><div class="line">     return function c(d) &#123;</div><div class="line">         return b+d;</div><div class="line">     &#125;</div><div class="line"> &#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">  a=b=&gt;&#123;return d=&gt;&#123;return b+d&#125;&#125;</div><div class="line"></div><div class="line"> let a=b=&gt;d=&gt;b+d;</div><div class="line"></div><div class="line">console.log(a(1)(2));</div><div class="line"></div><div class="line">//可以通过箭头函数 解决this问题，或者用bind解决this指向问题,不用es6箭头函数，输出this是window</div><div class="line"></div><div class="line">let obj=&#123;</div><div class="line">    a:function () &#123;</div><div class="line">        setTimeout(()=&gt;&#123;</div><div class="line">            console.log(this);//obj</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">obj.a();</div></pre></td></tr></table></figure>
+<h2 id="全局变量golbal"><a href="#全局变量golbal" class="headerlink" title="全局变量golbal"></a>全局变量golbal</h2><ul>
+<li><p>只要在文件中，可以不用声明直接使用的叫做全局对象，<br>服务端没有window 点击事件，没有那些ajax。</p>
+</li>
+<li><p>服务端有global，global上的对象都可以直接访问-&gt;全局对象</p>
+</li>
+<li><p>process 进程</p>
+</li>
+<li>Buffer 缓存区 （表示内存）</li>
+<li>clearImmediate setImmediate</li>
+<li>clearInterval  setInterval</li>
+<li>clearTimeout   setTimeout</li>
+<li>console -&gt; log dir info error warn time/timeEnd (不常用)</li>
+</ul>
+<p>console.log(‘a’);<br>setTimeout(function () {<br>    console.timeEnd(‘a’);<br>},2000);</p>
+<h2 id="node环境下执行项目"><a href="#node环境下执行项目" class="headerlink" title="node环境下执行项目"></a>node环境下执行项目</h2><ul>
+<li>因为配置过node 可以右键run ，可以在命令行下执行某个文件</li>
+<li>在命令行下 通过node+ 文件名执行</li>
+</ul>
+<h2 id="2-setTimeout-callback-异步-事件环，node程序是事件环"><a href="#2-setTimeout-callback-异步-事件环，node程序是事件环" class="headerlink" title="2.setTimeout callback 异步 (事件环，node程序是事件环)"></a>2.setTimeout callback 异步 (事件环，node程序是事件环)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">setTimeout(function (data,a) &#123;</div><div class="line">    console.log(data,a);</div><div class="line">    console.log(this);</div><div class="line">&#125;,1000,&apos;你好&apos;,&apos;不好&apos;);</div></pre></td></tr></table></figure>
+<ul>
+<li>你好,setTimeout可以传递参数，这里的this指向setTimeout自己,文件中直接打印this 是空对象</li>
+</ul>
+<h2 id="setImmediate-立即-异步的-第二个小本上的"><a href="#setImmediate-立即-异步的-第二个小本上的" class="headerlink" title="setImmediate 立即 异步的 第二个小本上的"></a>setImmediate 立即 异步的 第二个小本上的</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">setImmediate(function () &#123;</div><div class="line">    console.log(&apos;立即&apos;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li>一般情况和不写时间的settimeout是一样的</li>
+</ul>
+<h2 id="process进程-设置环境变量，-生成环境-开发环境"><a href="#process进程-设置环境变量，-生成环境-开发环境" class="headerlink" title="process进程 设置环境变量， 生成环境 开发环境"></a>process进程 设置环境变量， 生成环境 开发环境</h2><ul>
+<li>在开发的时候输出开发环境 ，上线的时候输出生成环境<br>console.log(process.env);//environment ，两个系统 mac windows</li>
+<li><p>设置环境变量通过 set a=b 设置 可以通过process.env取出来(只在命令行下使用)，可以区分开发环境</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if(process.env.NODE_ENV===&apos;dev&apos;)&#123;</div><div class="line">    console.log(&apos;开发环境&apos;)</div><div class="line">&#125;else &#123;</div><div class="line">    console.log(&apos;生成环境&apos;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>服务端全局变量 global  挂载在global上的属性 可以直接获取,var 声明的不会挂载在global上，为了解决模块化问题<br>global.a=1;<br>console.log(a);</p>
+</li>
+</ul>
+<h2 id="module"><a href="#module" class="headerlink" title="module"></a>module</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">console.log(con);//输出这个未定义的con，可以报错，然后就可以看到闭包中的五个形参</div><div class="line">//require exports module 都是这个文件外层套了一个闭包，闭包中的形参</div><div class="line">//require,exports,module,__dirname,__filename 也叫全局对象</div><div class="line"></div><div class="line">//console.log(arguments);</div></pre></td></tr></table></figure>
+<h2 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h2><ul>
+<li>js中实现模块化，单例，闭包</li>
+<li>单例 缺点：不能保证一定不冲突，会导致调用过长，require(AMD) ,seajs(CMD),import export,不兼容</li>
+<li>没有块级作用域</li>
+</ul>
+<h2 id="node-自带模块化-commonjs规范"><a href="#node-自带模块化-commonjs规范" class="headerlink" title="node 自带模块化 commonjs规范"></a>node 自带模块化 commonjs规范</h2><ul>
+<li>怎么定义一个模块(每一个js都是一个模块，在每个文件外面增加一个闭包)</li>
+<li>如何导出一个模块 module.exports/exports</li>
+<li>如何引用一个模块 require();</li>
+</ul>
+<h2 id="举个栗子"><a href="#举个栗子" class="headerlink" title="举个栗子"></a>举个栗子</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">function sum(...arr) &#123;</div><div class="line">    //Array.from(arguments) 将arguments转化为数组 es6方法</div><div class="line">    //[].slice.call(arguments) 将arguments转化为数组 原生方法</div><div class="line">    let total=0</div><div class="line">    arr.forEach(item=&gt;total+=item);</div><div class="line">    return total;</div><div class="line">&#125;</div><div class="line">//导出的函数不要用箭头函数</div><div class="line">//1.module.exports=sum;</div><div class="line">//2.exports.sum=sum;</div><div class="line">//3.module.exports.sum=sum;</div><div class="line"></div><div class="line">let sum=require(&quot;./sum&quot;);</div><div class="line">//sum拿到的是module.exports对象</div><div class="line">//1.sum(1,2,3,4,5,6)</div><div class="line">//2\3.sum(1,2,3,4,5)</div><div class="line">global.sum=sum;</div><div class="line">//尽量不要在global上挂载属性</div></pre></td></tr></table></figure>
+<h2 id="模块分类"><a href="#模块分类" class="headerlink" title="模块分类"></a>模块分类</h2><ul>
+<li>文件模块</li>
+<li><p>第三方模块 别人写的，需要下载 npm下载模块</p>
+<ul>
+<li><p>全局安装(只能在命令行下使用 会提供给你一个全局命令,代码里不能使用)</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">npm install nrm -g</div><div class="line">nrm test</div><div class="line">nrm use taobao/cnpm</div></pre></td></tr></table></figure>
+</li>
+<li><p>本地安装(在当前项目下使用)<br>  自己不能安装自己<br>  npm init 记录所有依赖的 package.json，可能会导致安装到上级目录，名字不能有中文 不能有大写 不能有特殊字符 快捷一件npm init -y</p>
+<ul>
+<li>安装 npm install</li>
+<li>开发依赖 只在开发时应用 例如less   –save-dev(-D)</li>
+<li>项目依赖 开发上线都需要 例如jquery  –save(-S)</li>
+<li>卸载 npm uninstall 模块的名字 –save</li>
+<li>查看模块版本 npm info vue</li>
+<li>指定版本安装 npm install vue@1.0.0 –save  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"> </div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>内置模块、核心模块 node自带的</p>
+</li>
+</ul>
+<h2 id="yarn-需要npm来下载-主流"><a href="#yarn-需要npm来下载-主流" class="headerlink" title="yarn 需要npm来下载(主流)"></a>yarn 需要npm来下载(主流)</h2><ul>
+<li><p>安装一次即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install yarn -g</div></pre></td></tr></table></figure>
+</li>
+<li><p>初始化 package.json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yarn init -y</div></pre></td></tr></table></figure>
+</li>
+<li><p>本地安装<br>  -开发依赖 yarn add less -dev<br>  -项目依赖 yarn add jquery</p>
+</li>
+<li>删除<ul>
+<li>yarn remove less -dev</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>npm node package manager 管理node的包 (很多js文件)的，安装node自带npm ，买node送npm</p>
+</blockquote>
+<h2 id="发布包-必须得是别人没发过的，包里需要有一个package-json"><a href="#发布包-必须得是别人没发过的，包里需要有一个package-json" class="headerlink" title="发布包(必须得是别人没发过的，包里需要有一个package.json)"></a>发布包(必须得是别人没发过的，包里需要有一个package.json)</h2><ul>
+<li><p>需要登录到官方npm上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nrm use npm</div></pre></td></tr></table></figure>
+</li>
+<li><p>注册账号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm addUser</div><div class="line">npm publish 发布</div></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[git]]></title>
       <url>/2017/07/01/git/</url>
       <content type="html"><![CDATA[<h1 id="201704—-homework"><a href="#201704—-homework" class="headerlink" title="201704—_homework"></a>201704—_homework</h1><h2 id="git下载地址"><a href="#git下载地址" class="headerlink" title="git下载地址"></a>git下载地址</h2><p><a href="https://git-scm.com/" target="_blank" rel="external">https://git-scm.com/</a></p>
